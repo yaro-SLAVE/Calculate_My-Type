@@ -8,14 +8,30 @@ namespace Calculate_My_Type
 {
     public class Brightness
     {
-        private int value;
+        private double value;
 
-        public Brightness(int bright)
+        public Brightness(double bright)
         {
             this.setBrightness(bright);
         }
 
-        public void setBrightness(int bright)
+        public Brightness(int r, int g, int b)
+        {
+            setBrightness(r, g, b);
+        }
+
+        public void setBrightness(int r, int g, int b)
+        {
+            double r1 = (double)r / 255;
+            double g1 = (double)g / 255;
+            double b1 = (double)b / 255;
+
+            double cmax = new[] { r1, g1, b1 }.Max();
+
+            this.setBrightness((double)(cmax * 100));
+        }
+
+        public void setBrightness(double bright)
         {
             if (bright < 0)
             {
@@ -31,7 +47,7 @@ namespace Calculate_My_Type
             }
         }
 
-        public int getBright()
+        public double getBright()
         {
             return value;
         }

@@ -9,22 +9,28 @@ namespace Calculate_My_Type
     public class Hue
     {
         public int value;
+        private Red r;
+        private Green g;
+        private Blue b;
 
         public Hue(int value)
         {
             this.setHue(value);
         }
 
-        public Hue(Red r, Green g, Blue b)
+        public Hue(int r, int g, int b)
         {
-            this.setHue(r, g, b);
+            this.r = new Red(r);
+            this.g = new Green(g);
+            this.b = new Blue(b);
+            this.setHue(this.r.getRed(), this.g.getGreen(), this.b.getBlue());
         }
 
-        public void setHue(Red r, Green g, Blue b)
+        public void setHue(int r, int g, int b)
         {
-            double r1 = r.getRed() / 255;
-            double g1 = g.getGreen() / 255;
-            double b1 = b.getBlue() / 255;
+            double r1 = (double)r / 255;
+            double g1 = (double)g / 255;
+            double b1 = (double)b / 255;
             
             double cmax = new[] { r1, g1, b1 }.Max();
             double cmin = new[] { r1, g1, b1 }.Min();
@@ -35,23 +41,25 @@ namespace Calculate_My_Type
             if (d == 0)
             {
                 hue = 0;
-            } else
+            } 
+            
+            else
             {
                 if (cmax == r1)
                 {
-                    hue = 60 * (((g1 - b1) / d) % 6);
+                    hue = (int)(60 * (((g1 - b1) / d) % 6));
                 }
                 else if (cmax == g1)
                 {
-                    hue = 60 * (((b1 - r1) / d) + 2);
+                    hue = (int)(60 * (((b1 - r1) / d) + 2));
                 }
                 else if (cmax == b1)
                 {
-                    hue = 60 * (((r1 - g1) / d) + 4);
+                    hue = (int)(60 * (((r1 - g1) / d) + 4));
                 }
             }
 
-            this.value = hue;
+            this.setHue(hue);
         }
 
         public void setHue(int hue)
@@ -60,9 +68,9 @@ namespace Calculate_My_Type
             {
                 this.value = 0;
             }
-            else if (hue > 360)
+            else if (hue > 359)
             {
-                this.value = 360;
+                this.value = 359;
             }
             else
             {
@@ -73,6 +81,21 @@ namespace Calculate_My_Type
         public int getHue()
         {
             return this.value;
+        }
+
+        public int getRed()
+        {
+            return r.getRed();
+        }
+
+        public int getGreen()
+        {
+            return g.getGreen();
+        }
+
+        public int getBlue()
+        {
+            return b.getBlue();
         }
     }
 }

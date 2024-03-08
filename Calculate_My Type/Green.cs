@@ -35,10 +35,5 @@ namespace Calculate_My_Type
                 this.value = green;
             }
         }
-
-        public void addGreen(int num)
-        {
-            this.value += num;
-        }
     }
 }

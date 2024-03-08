@@ -12,6 +12,21 @@ namespace Calculate_My_Type
         private Green g;
         private Blue b;
 
+        public int R 
+        {
+            get { return r.getRed(); }    
+        }
+
+        public int G
+        {
+            get { return g.getGreen(); }
+        }
+
+        public int B
+        {
+            get { return b.getBlue(); }
+        }
+
         public RGB(Red r, Green g, Blue b)
         {
             this.r = r;
@@ -51,7 +66,36 @@ namespace Calculate_My_Type
 
         public string getRGB()
         {
-            return "(" + r.getRed().ToString() + ", " + g.getGreen().ToString() + ", " + b.getBlue().ToString() + ")";
+            string rgb = "";
+
+            if (Convert.ToString(R, 16).Length == 1)
+            {
+                rgb += "0" + Convert.ToString(R, 16);
+            }
+            else
+            {
+                rgb += Convert.ToString(R, 16);
+            }
+
+            if (Convert.ToString(G, 16).Length == 1)
+            {
+                rgb += "0" + Convert.ToString(G, 16);
+            }
+            else
+            {
+                rgb += Convert.ToString(G, 16);
+            }
+
+            if (Convert.ToString(B, 16).Length == 1)
+            {
+                rgb += "0" + Convert.ToString(B, 16);
+            }
+            else
+            {
+                rgb += Convert.ToString(B, 16);
+            }
+
+            return rgb;
         }
     }
 }
